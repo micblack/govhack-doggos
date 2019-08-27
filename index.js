@@ -19,7 +19,7 @@ const vm = new window.Vue({
 
 	methods: {
 
-		fetchDoggos: function () {
+		fetchDoggos: function (autoDisplay) {
 			let url  = 'https://data.sunshinecoast.qld.gov.au/resource/7f87-i6kx.json'
 			let root = this
 
@@ -28,6 +28,7 @@ const vm = new window.Vue({
 				console.log('API response', response)
 				root.doggos = response.data
 				root.maxDoggos = response.data.length
+				if (autoDisplay) root.randomDoggo()
 			})
 		},
 
