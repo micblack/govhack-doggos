@@ -31,12 +31,21 @@ const vm = new window.Vue({
 			})
 		},
 
+		randomDoggo: function () {
+			this.index = Math.floor(Math.random() * this.maxDoggos) + 1
+			this.doggo.name = this.doggos[this.index].name
+			this.doggo.age = (this.doggos[this.index].age / 7).toFixed(2)
+			this.doggo.gender = this.doggos[this.index].gender == 'F' ? 'Female' : 'Male'
+			this.doggo.locality = this.doggos[this.index].locality.toLowerCase()
+			this.doggo.photo = 'https://placedog.net/1280/720?random&' + this.index
+		}
+
 	},
 
 	created() {
 
 		this.fetchDoggos(true)
-		
+
 	}
 
 })
