@@ -17,8 +17,26 @@ const vm = new window.Vue({
 		}
 	},
 
-	methods: {},
+	methods: {
 
-	created() {}
+		fetchDoggos: function () {
+			let url  = 'https://data.sunshinecoast.qld.gov.au/resource/7f87-i6kx.json'
+			let root = this
+
+			axios.get(url)
+			.then((response) => {
+				console.log('API response', response)
+				root.doggos = response.data
+				root.maxDoggos = response.data.length
+			})
+		},
+
+	},
+
+	created() {
+
+		this.fetchDoggos(true)
+		
+	}
 
 })
